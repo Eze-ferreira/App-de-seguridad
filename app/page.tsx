@@ -13,14 +13,46 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 p-6">
-      <CasaForm onAddCasa={agregarCasa} />
+  <main className="min-h-screen bg-zinc-100 p-6">
+    <div className="max-w-6xl mx-auto space-y-8">
+      {/* Header */}
+      <header className="space-y-2">
+        <h1 className="text-3xl font-bold text-zinc-800">
+          Gestión de Casas
+        </h1>
+        <p className="text-zinc-500">
+          Panel de administración del barrio
+        </p>
+      </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {casas.map((casa) => (
-          <CasaCard key={casa.id} casa={casa} />
-        ))}
-      </div>
-    </main>
-  );
+      {/* Formulario */}
+      <section className="bg-white rounded-xl shadow p-6">
+        <h2 className="text-xl font-semibold text-zinc-700 mb-4">
+          Agregar nueva casa
+        </h2>
+        <CasaForm onAddCasa={agregarCasa} />
+      </section>
+
+      {/* Listado */}
+      <section>
+        <h2 className="text-xl font-semibold text-zinc-700 mb-4">
+          Casas registradas
+        </h2>
+
+        {casas.length === 0 ? (
+          <p className="text-zinc-400">
+            No hay casas cargadas todavía
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {casas.map((casa) => (
+              <CasaCard key={casa.id} casa={casa} />
+            ))}
+          </div>
+        )}
+      </section>
+    </div>
+  </main>
+);
+
 }
